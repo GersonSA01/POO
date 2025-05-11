@@ -1,0 +1,941 @@
+<doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologías y Arquitecturas para Ingenieros de Software 2025</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #e74c3c;
+            --text-dark: #34495e;
+            --text-light: #f8f9fa;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        
+        .hero {
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1.2s ease;
+        }
+        
+        .hero-bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        .tech-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .tech-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tech-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-card p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+        
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .architecture-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--secondary);
+            text-align: center;
+        }
+        
+        .architecture-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .architecture-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .tips-list {
+            margin-top: 1.5rem;
+        }
+        
+        .tip-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            transition: var(--transition);
+        }
+        
+        .tip-item:hover {
+            transform: translateX(5px);
+            background: #fff;
+            box-shadow: var(--shadow);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: var(--text-light);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+        }
+        
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .skill-bars {
+            margin-top: 2rem;
+        }
+        
+        .skill-bar {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-bar h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-container {
+            background: #f1f1f1;
+            border-radius: 20px;
+            height: 10px;
+            width: 100%;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            border-radius: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .trend-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .trend-item {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-bottom: 4px solid var(--accent);
+        }
+        
+        .trend-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-header h2 {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-bottom: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.5s;
+        }
+        
+        .delay-2 {
+            animation-delay: 1s;
+        }
+        
+        .delay-3 {
+            animation-delay: 1.5s;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .tech-list,
+            .architecture-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hero">
+            <h1>Tecnologías y Arquitecturas para Ingenieros de Software 2025</h1>
+            <p>Una guía completa para mantenerse competitivo en el mundo del desarrollo de software</p>
+            <div class="btn-group">
+                <a href="#lenguajes" class="btn">Lenguajes</a>
+                <a href="#frameworks" class="btn btn-secondary">Frameworks</a>
+                <a href="#arquitecturas" class="btn">Arquitecturas</a>
+                <a href="#consejos" class="btn btn-secondary">Consejos</a>
+                <a href="./portada.html" class="btn btn-secondary">Portada</a>
+            </div>
+            <div class="hero-bubbles"></div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="lenguajes" class="section-animate">
+            <div class="section-header">
+                <h2>Lenguajes de Programación</h2>
+            </div>
+            <p>Estos son los lenguajes de programación más relevantes que todo ingeniero de software debería conocer:</p>
+            
+            <div class="tech-list">
+                <div class="tech-card floating">
+                    <h3>Python</h3>
+                    <p>Versátil y fácil de aprender. Ideal para desarrollo web, ciencia de datos, IA y automatización. Cuenta con una gran comunidad y abundantes bibliotecas.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>JavaScript</h3>
+                    <p>Imprescindible para desarrollo web. Funciona tanto en frontend como backend (Node.js). El lenguaje más utilizado en el mundo del desarrollo.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>Java</h3>
+                    <p>Muy usado en empresas y aplicaciones Android. Robusto, orientado a objetos y multiplataforma. Alta demanda en el mercado laboral.</p>
+                </div>
+                
+                <div class="tech-card floating delay-3">
+                    <h3>C#</h3>
+                    <p>Principal para desarrollo en el ecosistema Microsoft. Usado para aplicaciones de escritorio, web y juegos (Unity).</p>
+                </div>
+                
+                <div class="tech-card floating">
+                    <h3>Go (Golang)</h3>
+                    <p>Eficiente y rápido. Excelente para microservicios y aplicaciones de alto rendimiento.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>TypeScript</h3>
+                    <p>JavaScript con tipos estáticos. Mejora la calidad del código en proyectos grandes.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>Rust</h3>
+                    <p>Para sistemas de alto rendimiento y seguridad. Ganando popularidad por su seguridad en memoria.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="frameworks" class="section-animate">
+            <div class="section-header">
+                <h2>Frameworks Principales</h2>
+            </div>
+            
+            <h3>Frontend</h3>
+            <div class="tech-list">
+                <div class="tech-card floating">
+                    <h3>React</h3>
+                    <p>Biblioteca de Facebook para interfaces de usuario. Gran ecosistema y alta demanda laboral.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>Angular</h3>
+                    <p>Framework completo de Google. Ideal para aplicaciones empresariales grandes.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>Vue.js</h3>
+                    <p>Fácil de aprender y progresivo. Bueno para proyectos pequeños y medianos.</p>
+                </div>
+                
+                <div class="tech-card floating delay-3">
+                    <h3>Next.js</h3>
+                    <p>Framework React para aplicaciones renderizadas en servidor (SSR), generación estática y más. Ideal para SEO y rendimiento.</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">CSS y Diseño</h3>
+            <div class="tech-list">
+                <div class="tech-card floating">
+                    <h3>Tailwind CSS</h3>
+                    <p>Framework utilitario de CSS. Permite diseño rápido directamente en el marcado HTML. Altamente personalizable y optimizado.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>Bootstrap</h3>
+                    <p>Framework CSS para diseño responsive. Componentes predefinidos para desarrollo rápido.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>Styled Components</h3>
+                    <p>CSS-in-JS para React. Permite crear componentes con estilos encapsulados.</p>
+                </div>
+                
+                <div class="tech-card floating delay-3">
+                    <h3>SASS/SCSS</h3>
+                    <p>Preprocesador CSS que añade variables, anidación, mixins y más funcionalidades avanzadas.</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Bibliotecas UI</h3>
+            <div class="tech-list">
+                <div class="tech-card floating">
+                    <h3>shadcn/ui</h3>
+                    <p>Componentes reutilizables y accesibles basados en Radix UI. No es una biblioteca en sí, sino componentes que copias a tu proyecto.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>NextUI</h3>
+                    <p>Biblioteca moderna de componentes UI para React y Next.js. Enfocada en experiencia de usuario y accesibilidad.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>Material UI</h3>
+                    <p>Implementación de Material Design para React. Amplio conjunto de componentes preestilizados.</p>
+                </div>
+                
+                <div class="tech-card floating delay-3">
+                    <h3>Chakra UI</h3>
+                    <p>Biblioteca modular con enfoque en accesibilidad y facilidad de uso. Componentes simples y personalizables.</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Backend</h3>
+            <div class="tech-list">
+                <div class="tech-card floating">
+                    <h3>Express.js</h3>
+                    <p>Ligero y flexible para APIs y aplicaciones web con Node.js.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>NestJS</h3>
+                    <p>Framework Node.js progresivo inspirado en Angular. Arquitectura modular y mantenible para aplicaciones empresariales.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>Django</h3>
+                    <p>Framework completo con muchas funcionalidades incluidas. Rápido desarrollo y seguro.</p>
+                </div>
+                
+                <div class="tech-card floating delay-3">
+                    <h3>FastAPI</h3>
+                    <p>Framework Python moderno y rápido. Ideal para APIs con validación automática y documentación interactiva.</p>
+                </div>
+                
+                <div class="tech-card floating">
+                    <h3>Spring Boot</h3>
+                    <p>Estándar en empresas para aplicaciones robustas. Muchas integraciones empresariales.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>Laravel</h3>
+                    <p>Popular para desarrollo web rápido. Buena documentación y comunidad.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>ASP.NET Core</h3>
+                    <p>Moderno, rápido y multiplataforma. Integración perfecta con ecosistema Microsoft.</p>
+                </div>
+                
+                <div class="tech-card floating delay-3">
+                    <h3>Bun</h3>
+                    <p>Runtime JavaScript todo-en-uno diseñado para velocidad. Incluye transpilador, empaquetador y gestor de paquetes.</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Desarrollo Móvil</h3>
+            <div class="tech-list">
+                <div class="tech-card floating">
+                    <h3>React Native</h3>
+                    <p>Desarrollo multiplataforma con base JavaScript/React.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>Flutter</h3>
+                    <p>De Google, para aplicaciones nativas multiplataforma. Rendimiento cercano a nativo.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>Swift</h3>
+                    <p>Lenguaje preferido para desarrollo nativo en iOS.</p>
+                </div>
+                
+                <div class="tech-card floating delay-3">
+                    <h3>Kotlin</h3>
+                    <p>Lenguaje preferido para desarrollo nativo en Android.</p>
+                </div>
+                
+                <div class="tech-card floating">
+                    <h3>Expo</h3>
+                    <p>Framework y plataforma para React Native. Simplifica el desarrollo con herramientas y servicios adicionales.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>SwiftUI</h3>
+                    <p>Framework declarativo de Apple para construir interfaces en todas sus plataformas con menos código.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>Jetpack Compose</h3>
+                    <p>Kit de herramientas moderno de Android para construir interfaces nativas con menos código.</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Frameworks Full-Stack</h3>
+            <div class="tech-list">
+                <div class="tech-card floating">
+                    <h3>Next.js</h3>
+                    <p>Framework full-stack para React. Incluye funcionalidades de backend con API Routes/Server Actions.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>Remix</h3>
+                    <p>Framework full-stack para aplicaciones web modernas con enfoque en experiencia de usuario y rendimiento.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>SvelteKit</h3>
+                    <p>Framework construido sobre Svelte. Ofrece renderizado en servidor, generación estática y más.</p>
+                </div>
+                
+                <div class="tech-card floating delay-3">
+                    <h3>Astro</h3>
+                    <p>Framework para sitios impulsados por contenido. Renderizado en servidor con "islas" de interactividad.</p>
+                </div>
+                
+                <div class="tech-card floating">
+                    <h3>HTMX</h3>
+                    <p>Biblioteca que permite actualizar contenido HTML directamente desde respuestas HTTP sin necesidad de JavaScript complejo.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>T3 Stack</h3>
+                    <p>Conjunto de tecnologías modernas (TypeScript, tRPC, Tailwind, Next.js, Prisma) para desarrollo fullstack tipado.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tecnologias" class="section-animate">
+            <div class="section-header">
+                <h2>Tecnologías Fundamentales</h2>
+            </div>
+            
+            <div class="skill-bars">
+                <div class="skill-bar">
+                    <h4>Desarrollo Web Básico</h4>
+                    <p>HTML, CSS, JavaScript, APIs RESTful</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" data-width="95"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-bar">
+                    <h4>Bases de Datos</h4>
+                    <p>SQL (MySQL, PostgreSQL), NoSQL (MongoDB), Redis</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" data-width="90"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-bar">
+                    <h4>Control de Versiones</h4>
+                    <p>Git, GitHub/GitLab, flujos de trabajo como Git Flow</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" data-width="85"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-bar">
+                    <h4>Contenedores</h4>
+                    <p>Docker, Docker Compose para entornos multi-contenedor</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" data-width="80"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-bar">
+                    <h4>Cloud Computing</h4>
+                    <p>AWS, Azure, Google Cloud (IaaS, PaaS)</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" data-width="75"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-bar">
+                    <h4>Inteligencia Artificial Básica</h4>
+                    <p>Integración de APIs de IA, conceptos básicos de machine learning</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" data-width="70"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="arquitecturas" class="section-animate">
+            <div class="section-header">
+                <h2>Arquitecturas de Software</h2>
+            </div>
+            
+            <div class="architecture-grid">
+                <div class="architecture-card floating">
+                    <div class="architecture-icon">🏗️</div>
+                    <h3>Monolítica</h3>
+                    <p>Todo en una sola aplicación. Fácil de desarrollar para proyectos pequeños. Ideal para aprender y comenzar.</p>
+                </div>
+                
+                <div class="architecture-card floating delay-1">
+                    <div class="architecture-icon">🔄</div>
+                    <h3>Cliente-Servidor</h3>
+                    <p>Separación básica entre frontend y backend. APIs para comunicación entre componentes.</p>
+                </div>
+                
+                <div class="architecture-card floating delay-2">
+                    <div class="architecture-icon">🧩</div>
+                    <h3>Microservicios</h3>
+                    <p>División de la aplicación en componentes independientes. Cada servicio con una función específica.</p>
+                </div>
+                
+                <div class="architecture-card floating delay-3">
+                    <div class="architecture-icon">📣</div>
+                    <h3>Event-Driven</h3>
+                    <p>Comunicación basada en eventos. Utiliza tecnologías como Kafka, RabbitMQ para mensajería.</p>
+                </div>
+                
+                <div class="architecture-card floating">
+                    <div class="architecture-icon">☁️</div>
+                    <h3>Serverless</h3>
+                    <p>Funciones como servicio (AWS Lambda, Azure Functions). Pago por uso y alta escalabilidad.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="habilidades" class="section-animate">
+            <div class="section-header">
+                <h2>Habilidades Complementarias</h2>
+            </div>
+            
+            <h3>Gestión de Proyectos</h3>
+            <div class="tech-list">
+                <div class="tech-card floating">
+                    <h3>Jira</h3>
+                    <p>Plataforma de Atlassian para gestión de proyectos ágiles. Ideal para equipos que utilizan Scrum o Kanban. Ofrece seguimiento de tickets, planificación de sprints y generación de informes.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>Trello</h3>
+                    <p>Herramienta visual de gestión de proyectos basada en tableros Kanban. Sencilla, flexible y perfecta para equipos pequeños o proyectos personales.</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>Asana</h3>
+                    <p>Plataforma para gestionar el trabajo en equipo. Organiza tareas, proyectos y objetivos con múltiples vistas (lista, tablero, cronograma).</p>
+                </div>
+                
+                <div class="tech-card floating delay-3">
+                    <h3>ClickUp</h3>
+                    <p>Herramienta todo-en-uno para gestión de proyectos, documentos, metas y más. Altamente personalizable con múltiples vistas y automatizaciones.</p>
+                </div>
+                
+                <div class="tech-card floating">
+                    <h3>GitHub Projects</h3>
+                    <p>Herramienta integrada en GitHub para planificar y seguir el trabajo directamente junto al código. Perfecta para equipos de desarrollo.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>Linear</h3>
+                    <p>Moderna herramienta de seguimiento de problemas y proyectos diseñada específicamente para equipos de desarrollo de software.</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Metodologías y Procesos</h3>
+            
+            <div class="tech-list">
+                <div class="tech-card floating">
+                    <h3>Metodologías Ágiles</h3>
+                    <p>Scrum y Kanban para gestión de proyectos. Incluye roles, ceremonias y artefactos para desarrollo iterativo e incremental.</p>
+                </div>
+                
+                <div class="tech-card floating delay-1">
+                    <h3>DevOps</h3>
+                    <p>Cultura y prácticas que unifican desarrollo y operaciones. Incluye integración y entrega continua (CI/CD).</p>
+                </div>
+                
+                <div class="tech-card floating delay-2">
+                    <h3>Testing</h3>
+                    <p>Pruebas unitarias, de integración y end-to-end. TDD (Test-Driven Development) y BDD (Behavior-Driven Development).</p>
+                </div>
+                
+                <div class="tech-card floating delay-3">
+                    <h3>Seguridad</h3>
+                    <p>Protección contra vulnerabilidades comunes (OWASP Top 10). Autenticación, autorización y cifrado de datos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tendencias" class="section-animate">
+            <div class="section-header">
+                <h2>Tendencias Importantes</h2>
+            </div>
+            
+            <div class="trend-list">
+                <div class="trend-item floating">
+                    <h3>Sostenibilidad en el Software</h3>
+                    <p>Green coding (programación eficiente en recursos). Optimización de rendimiento para reducir consumo energético.</p>
+                </div>
+                
+                <div class="trend-item floating delay-1">
+                    <h3>Low-Code/No-Code</h3>
+                    <p>Plataformas para desarrollo rápido. Automatización de tareas rutinarias sin necesidad de código profundo.</p>
+                </div>
+                
+                <div class="trend-item floating delay-2">
+                    <h3>Edge Computing</h3>
+                    <p>Computación en el borde de la red. Aplicaciones con menor latencia y mayor privacidad de datos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="consejos" class="section-animate">
+            <div class="section-header">
+                <h2>Consejos para Nuevos Ingenieros</h2>
+            </div>
+            
+            <div class="tips-list">
+                <div class="tip-item">
+                    <h3>Enfócate en fundamentos sólidos</h3>
+                    <p>Domina los conceptos base antes de perseguir tecnologías de moda.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <h3>Aprende haciendo</h3>
+                    <p>Crea proyectos propios para aplicar lo que aprendes en situaciones reales.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <h3>Practica la resolución de problemas</h3>
+                    <p>Utiliza plataformas como LeetCode o HackerRank para mejorar tus habilidades algorítmicas.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <h3>Trabaja en equipo</h3>
+                    <p>Participa en proyectos colaborativos y contribuye a proyectos open source.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <h3>Desarrolla habilidades blandas</h3>
+                    <p>La comunicación efectiva y el trabajo en equipo son tan importantes como las habilidades técnicas.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <h3>Mantente actualizado</h3>
+                    <p>Sigue blogs, podcasts y participa en conferencias del sector.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2025 - Tecnologías y Arquitecturas para Ingenieros de Software</p>
+        <p>Presentación preparada para futuros ingenieros de software</p>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+    
+    <script>
+        // Animación de scroll para secciones
+        const sections = document.querySelectorAll('.section-animate');
+        const backToTop = document.getElementById('backToTop');
+        
+        function checkSections() {
+            const triggerBottom = window.innerHeight / 5 * 4;
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                
+                if (sectionTop < triggerBottom) {
+                    section.classList.add('visible');
+                }
+            });
+            
+            // Mostrar/ocultar botón de volver arriba
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+        
+        // Animar barras de progreso
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            progressBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+            });
+        }
+        
+        // Crear burbujas para el fondo del hero
+        function createBubbles() {
+            const hero = document.querySelector('.hero-bubbles');
+            const bubbleCount = 20;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const size = Math.random() * 60 + 10;
+                const bubble = document.createElement('div');
+                
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.borderRadius = '50%';
+                bubble.style.position = 'absolute';
+                bubble.style.background = 'rgba(255, 255, 255, 0.2)';
+                bubble.style.backdropFilter = 'blur(2px)';
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`;
+                bubble.style.animation = `float ${Math.random() * 6 + 3}s ease-in-out infinite`;
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+                
+                hero.appendChild(bubble);
+            }
+        }
+        
+        // Scroll suave para los enlaces del menú
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Inicializar
+        window.addEventListener('scroll', checkSections);
+        window.addEventListener('load', () => {
+            checkSections();
+            animateProgressBars();
+            createBubbles();
+        });
+    </script>
+</body>
+</html>
